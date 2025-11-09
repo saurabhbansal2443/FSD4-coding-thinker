@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        height: 100px;
+        width: 100px;
+        border: 1px solid red;
+      }
+      .circle {
+        height: 100px;
+        width: 100px;
+        border: 1px solid red;
+        border-radius: 50%;
+      }
+      #container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="inputTag" />
+    <select name="" id="shape">
+      <option value="circle">circle</option>
+      <option value="box">Square</option>
+    </select>
+    <input id="color" type="color">
+    <button id="submitBtn">Submit</button>
+    <div id="container"></div>
+  </body>
+  <script src="./script.js"></script>
+</html>
