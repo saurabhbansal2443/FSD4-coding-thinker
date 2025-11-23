@@ -1,11 +1,12 @@
 import React from "react";
+import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchSuggestion, setSearchSuggestion] = useState([]);
-  
+  const timerId = useRef(null); // Used this hook to persist data between renderes 
 
   async function fetchApi() {
     if (searchQuery.trim().length === 0) return;
@@ -16,8 +17,12 @@ const App = () => {
     console.log(response);
     setSearchSuggestion(response.products);
   }
-  useEffect(() => {
-    setTimeout(() => {
+  useEffect(() => { 
+    // Debounce logic 
+    if (timerId.current) {
+      clearTimeout(timerId.current);
+    }
+    timerId.current = setTimeout(() => {
       fetchApi();
     }, 500);
   }, [searchQuery]);
@@ -33,11 +38,12 @@ const App = () => {
       />
 
       <div className="suggestionConatiner" style={styles.suggestionContainer}>
-        {searchSuggestion.map((obj) => (
-          <div className="suggestion" style={styles.suggestion}>
-            <p style={styles.text}>{obj.title}</p>
-          </div>
-        ))}
+        {searchQuery.trim().length !== 0 &&
+          searchSuggestion.map((obj) => (
+            <div className="suggestion" style={styles.suggestion}>
+              <p style={styles.text}>{obj.title}</p>
+            </div>
+          ))}
       </div>
     </div>
   );
