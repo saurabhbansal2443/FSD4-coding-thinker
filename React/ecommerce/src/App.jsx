@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import Home from "./screens/Home";
 
 const App = () => {
   return (
-    <div className='bg-sky-900 text-center text-white'>
-      Hello from App 
+    <div>
+      <Home />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
